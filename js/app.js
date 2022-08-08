@@ -14,7 +14,36 @@ Clicking the space between and around the onscreen keyboard buttons should not r
 */
 
 const startBtn = document.getElementById('btn__reset');
+const game = new Game();
 
-startBtn.addEventListener('click', => {
+startBtn.addEventListener('click', () => {
+    console.log('Start button is functional');
+    game.startGame();
+    console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+});
 
-}
+const qwerty = Array.from(document.querySelectorAll('#qwerty .key'));
+qwerty.forEach(key => {
+    key.addEventListener("click", (e) => {
+        game.handleInteraction(e.target);
+    })
+});
+
+// TEST CODE
+// const phrase = new Phrase('test');
+
+// console.log(`Phrase - phrase: ${phrase.phrase}`);
+// game.phrases.forEach((phrase, index) => {
+//     console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
+//     });
+// const logPhrase = (phrase) => {
+//     console.log(`Phrase - phrase: `, phrase.phrase);
+//     };
+//     const game = new Game();
+//     logPhrase(game.getRandomPhrase());
+//     logPhrase(game.getRandomPhrase());
+//     logPhrase(game.getRandomPhrase());
+//     logPhrase(game.getRandomPhrase());
+//     logPhrase(game.getRandomPhrase());
+// const game = new Game();
+// game.getRandomPhrase().addPhraseToDisplay();

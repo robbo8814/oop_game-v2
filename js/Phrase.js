@@ -4,9 +4,28 @@
 
 class Phrase {
     constructor(phrase) {
-        this.phrase = phrase.toLowerCase;
+        this.phrase = phrase.toLowerCase();
     }
+
+    /**
+    * Display phrase on game board
+    */
     addPhraseToDisplay() {
+        const phraseDisplay = document.querySelector('#phrase ul');
+        
+        for (let i=0; i<this.phrase.length; i++) {
+            let li = document.createElement("li");
+
+            if (this.phrase[i] === ' ') {
+                li.classList.add('space');
+                li.textContent = ' ';
+            } else {
+                li.classList.add("hide", "letter", `${this.phrase[i]}`);
+                li.textContent = `${this.phrase[i]}`;
+            }
+            phraseDisplay.append(li);
+        }
+        
         /* addPhraseToDisplay(): this adds letter placeholders to the display when the game starts.
         Each letter is presented by an empty box, one li element for each letter.
         See the example_phrase_html.txt file for an example of what the rendered HTML
@@ -16,14 +35,29 @@ class Phrase {
         the letter CSS class for letters and the space CSS class for spaces.
         */
     }
-    checkLetter() {
-        /* checkLetter(): checks to see if the letter selected by the player matches a letter in the phrase.
-        */
-    }
-    showMatchedLetter() {
-        /*showMatchedLetter(): reveals the letter(s) on the board that matches the player's selection.
-        To reveal the matching letter(s), select all of the letter DOM elements that have a CSS class name
-        that matches the selected letter and replace each selected element's hide CSS class with the show CSS class.
-        */
-    }
+        /**
+    * Checks if passed letter is in phrase
+    * @param (string) letter - Letter to check
+    */
+    checkLetter(letter) {
+        if (this.phrase.includes(letter)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+    showMatchedLetter(letter) {
+        const liElements = document.querySelectorAll('#phrase li')
+        liElements.forEach(liElement => {
+            let classes = liElement.classList;
+            if(classes.contains(letter)) {
+                classes.replace("hide", "show");
+            }
+        })
+    };
 }
