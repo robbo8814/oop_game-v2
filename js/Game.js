@@ -58,7 +58,8 @@ class Game {
         // const matched = this.activePhrase.checkLetter(letter);
         key.disabled = true;
         if (this.activePhrase.checkLetter(letter)) {
-        key.classList.add('chosen')
+        key.classList.add('chosen');
+        key.classList.add('bounce');
         this.activePhrase.showMatchedLetter(letter);
             if (this.checkForWin()) {
                 this.gameOver(true);
@@ -77,7 +78,8 @@ class Game {
     removeLife() {
         const lives = Array.from(document.querySelectorAll('.tries img'));
         const life = lives.find(life => life.getAttribute("src") === "images/liveHeart.png")
-        life.setAttribute('src', "images/lostHeart.png")
+        life.setAttribute('src', "images/lostHeart.png");
+        life.classList.add('bounce');
         this.missed ++
         if (this.missed === 5) {
             this.gameOver(false);
@@ -122,7 +124,10 @@ class Game {
         this.missed = 0;
         // Keyboard reset
         const qwerty = Array.from(document.querySelectorAll('#qwerty .key'));
-        qwerty.forEach(key => key.className = 'key');
+        qwerty.forEach(key => {
+            key.className = 'key';
+            key.disabled = false;
+        });
         // Phrase reset
         const phraseDisplay = document.querySelector('#phrase ul');
         phraseDisplay.innerHTML = '';

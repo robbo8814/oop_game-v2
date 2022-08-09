@@ -16,6 +16,7 @@ Clicking the space between and around the onscreen keyboard buttons should not r
 const startBtn = document.getElementById('btn__reset');
 const game = new Game();
 
+
 startBtn.addEventListener('click', () => {
     console.log('Start button is functional');
     game.startGame();
@@ -28,6 +29,15 @@ qwerty.forEach(key => {
         game.handleInteraction(e.target);
     })
 });
+document.addEventListener("keydown", (e) => {
+        if (this.overlay.style.display === 'none') {
+            qwerty.forEach(key => {
+                if (key.textContent === e.key && !key.hasAttribute('disabled')) {
+                    game.handleInteraction(key);
+                }
+            })
+        }
+    });
 
 // TEST CODE
 // const phrase = new Phrase('test');
