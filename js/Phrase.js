@@ -11,36 +11,26 @@ class Phrase {
     * Display phrase on game board
     */
     addPhraseToDisplay() {
-        const phraseDisplay = document.querySelector('#phrase ul');
-        
-        for (let i=0; i<this.phrase.length; i++) {
+        const phraseDisplay = document.querySelector('#phrase ul');         // Phrase elements
+        for (let i=0; i<this.phrase.length; i++) {                          // For each character of phrase, display li element on screen
             let li = document.createElement("li");
-
-            if (this.phrase[i] === ' ') {
+            if (this.phrase[i] === ' ') {                                   // If character is space, add space to display
                 li.classList.add('space');
                 li.textContent = ' ';
             } else {
-                li.classList.add("hide", "letter", `${this.phrase[i]}`);
+                li.classList.add("hide", "letter", `${this.phrase[i]}`);    // If character is letter, display hidden letter elements
                 li.textContent = `${this.phrase[i]}`;
             }
             phraseDisplay.append(li);
         }
-        
-        /* addPhraseToDisplay(): this adds letter placeholders to the display when the game starts.
-        Each letter is presented by an empty box, one li element for each letter.
-        See the example_phrase_html.txt file for an example of what the rendered HTML
-        for a phrase should look like when the game starts, including any id or class attributes needed.
-        When the player correctly guesses a letter, the empty box is replaced with the matched letter
-        (see the showMatchedLetter() method below). Make sure the phrase displayed on the screen uses
-        the letter CSS class for letters and the space CSS class for spaces.
-        */
     }
+
         /**
     * Checks if passed letter is in phrase
     * @param (string) letter - Letter to check
     */
     checkLetter(letter) {
-        if (this.phrase.includes(letter)) {
+        if (this.phrase.includes(letter)) {                                 // If phrase includes letter, return true, else return false
             return true;
         } else {
             return false;
@@ -51,7 +41,7 @@ class Phrase {
     * Displays passed letter on screen after a match is found
     * @param (string) letter - Letter to display
     */
-    showMatchedLetter(letter) {
+    showMatchedLetter(letter) {                                             // Change class of matched letter to show on li element of phrase display
         const liElements = document.querySelectorAll('#phrase li')
         liElements.forEach(liElement => {
             let classes = liElement.classList;
