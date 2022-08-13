@@ -66,10 +66,10 @@ class Game {
     * Checks if player has remaining lives and ends game if player is out
     */
     removeLife() {
-        const life = this.lives.find(life => life.getAttribute("src") === "images/liveHeart.png")   // Array of all life elements that are still left
+        const life = this.lives.find(life => life.getAttribute("src") === "images/liveHeart.png");  // Array of all life elements that are still left
         life.setAttribute('src', "images/lostHeart.png");                                           // Set life element to life lost style
         life.classList.add('bounce');                                                               // Add custom animation to lost life element
-        this.missed ++                                                                              // Count incorrect guesses
+        this.missed ++;                                                                             // Count incorrect guesses
         if (this.missed === 5) {                                                                    // If 5 incorrect guesses
             this.gameOver(false);                                                                   // Game Over activated
         }
@@ -98,15 +98,15 @@ class Game {
         // Overlay show
         this.overLay.style.display = 'block';                               // Show Overlay
         if (gameWon) {
-            this.overLay.className = 'win'                                  // If Game Won, show win display
+            this.overLay.className = 'win';                                 // If Game Won, show win display
         } else {
-            this.overLay.className = 'lose'                                 // If Game Lost, show lose display
+            this.overLay.className = 'lose';                                // If Game Lost, show lose display
         }
 
         // Lives Reset
         this.lives.forEach(life => {                                        // Reset life elements img src & css style
             life.setAttribute('src', "images/liveHeart.png");
-            life.classList.remove('bounce')
+            life.classList.remove('bounce');
         });
         this.missed = 0;                                                    // Reset incorrect guess number
 
